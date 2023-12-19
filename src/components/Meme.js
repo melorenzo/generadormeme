@@ -2,7 +2,7 @@
 import html2canvas from 'html2canvas';
 import { BsArrowDownUp, BsArrowRight,BsArrowLeft } from "react-icons/bs";
 
-
+import Caroussel from "./Caroussel";
 import React, { useState} from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -30,6 +30,9 @@ const [positionY, setPositionY] = useState('');
 const [positionX, setPositionX] = useState('');
 
 
+
+
+
 const selectMeme = (e) => {
     setMeme(e.target.value);
     console.log(e.target.value);
@@ -50,6 +53,8 @@ const myStyle = {
 }
 console.log(positionX);
 
+
+
 const Download = (e) => {
     html2canvas(document.querySelector("#exportar")).then(function(canvas) {
     
@@ -66,33 +71,18 @@ const Download = (e) => {
   return (
     <Container>
         <Row>
-          <h1 className='my-3 text-center title'><span>Crea tu meme</span></h1>
+        <h1 className='my-3 text-center title'><span>Crea tu meme</span></h1>
             <Col sm={12} md={6}>
                 <Form className='p-3'>
                 <Form.Label className='mb-3 mt-3' >Selecciona una imagen: </Form.Label>
-                     <Form.Select onChange={selectMeme}  className='form-control form-select form-select-lg mb-3 w-100 m-auto' arial-label="dark">
-                        <option value={26}>Seleccionar imagen</option>
-                        <option value={1}>Dicaprio</option>
-                        <option value={2}>Futurama</option>
-                        <option value={3}>Bob Esponja</option>
-                        <option value={4}>Nena picarona</option>
-                        <option value={5}>Gato vegetales</option>
-                        <option value={6}>Cálculos</option>
-                        <option value={7}>Gato desobediente</option>
-                        <option value={8}>Homero</option>
-                        <option value={9}>Mujer</option>
-                        <option value={10}>Bon Esponja caja</option>
-                        <option value={11}>Derrapando</option>
-                        <option value={12}>Yo</option>
-                        <option value={13}>Dice mi mamá</option>
-                        <option value={14}>Payaso IT</option>
-                        <option value={15}>Toy Story</option>
-                    </Form.Select>  
+                <Caroussel onClick={selectMeme}/>
+                    
                   <Form.Label htmlFor="customRange2" className="form-label my-3">Vista previa :</Form.Label>
                    <Figure className="w-100">
                     <div id="exportar">
                         <Figure.Caption>
                             <p
+                                
                                 className="position-absolute w-100"
                                 id="texto-meme"
                                 style={myStyle}
@@ -110,6 +100,8 @@ const Download = (e) => {
                   
                     {/* <UploadImage /> */}
                 </Form>
+
+                
                        
             </Col>
             {/* Breakpoint     */}
